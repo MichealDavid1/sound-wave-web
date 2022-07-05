@@ -1,0 +1,34 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sound Wave</title>
+    <link rel="stylesheet" href="{% static 'app/styles.css' %}">
+</head>
+<body>
+    <main>
+        {% if context.result %}
+            <div id="result">
+                <p id="status">{{ context.status }}!</p>
+                <p>{{ context.result }}.</p>
+            </div>
+        {% else %}
+            <form action="/" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div id="image-div">
+                    <label for="image" class="tag">Image:</label>
+                    <input type="file" id="image" class="tag" name="file" required>
+                </div>
+                <div id="audio-div">
+                    <label for="audio" class="tag">Audio:</label>
+                    <input type="file" id="audio" class="tag" name="aud" required>
+                </div>
+                <button type="submit">Train</button>
+            </form>
+        {% endif %}
+    </main>
+</body>
+</html>
